@@ -3,7 +3,8 @@ import axios from 'axios'
 export const getUsers = ({ commit }) => {
     axios.get('https://myfakeapi.com/api/users')
         .then(response => {
-            const filteredData = response.data.Users.filter(r => r.department === 'Legal')
+            const filteredData = response.data.Users
+                .filter(r => r.department === 'Legal' && r.gender === 'Male')  // filtering users by department & gender
             commit('SET_USERS', filteredData)
         })
 }

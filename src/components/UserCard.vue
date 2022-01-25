@@ -2,7 +2,7 @@
     <div>
         <div class="card">
             <img :src="user.avatar" class="avatar card-avatar">
-            <router-link :to="{name: 'user', params: {id: user.id}}" class="link">
+            <router-link :to="{ name: 'user', params: { id: user.id } }" class="link">
                 <h1>{{ user.first_name }} {{ user.last_name }}</h1>
             </router-link>
         </div>
