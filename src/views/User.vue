@@ -1,22 +1,23 @@
 <template>
   <div>
-    <router-link :to="{ name: 'home', path: '/' }" class="back">
-      ←
-    </router-link>
+    <router-link :to="{ name: 'home', path: '/' }" class="back link">←</router-link>
     <div v-if="user" :key="user.id">
-      <div class="user-details">
-        <img :src="user.avatar" />
-        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-        <h2>{{ user.birthdate }}</h2>
-
-        <h2 v-for="address in user.address" :key="address.id">
-          {{ address.street }}, {{ address.street_name }}, {{ address.city }},
-          {{ address.postal_code }}, {{ address.state }}, {{ address.country }},
-          {{ address.country_code }}
-        </h2>
-
-        <h2>{{ user.email }}</h2>
-        <h2>{{ user.phone }}</h2>
+      <div class="user">
+        <div class="basics">
+            <img :src="user.avatar" class="avatar"/>
+            <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+        </div>
+        <div class="details">
+            <h2><span>Date of birth:</span> {{ user.birthdate }}</h2>
+            <h2 v-for="address in user.address" :key="address.id">
+                <span>Place of residence:</span>
+                {{ address.street }}, {{ address.street_name }}, {{ address.city }},
+                {{ address.postal_code }}, {{ address.state }}, {{ address.country }},
+                {{ address.country_code }}
+            </h2>
+            <h2><span>E-mail:</span> {{ user.email }}</h2>
+            <h2><span>Phone number:</span> {{ user.phone }}</h2>
+        </div>
       </div>
     </div>
   </div>
@@ -40,17 +41,17 @@ export default {
 
 <style>
 .back {
-  font-size: 84px;
+  padding-left: 1vw;
+  font-size: 4.3vw;
 }
 
-.user-details {
+.user {
   width: 50%;
-  padding: 50px 0;
+  padding: 4.5vh 2.5vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -64,6 +65,21 @@ export default {
   border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
+.basics {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 @media (max-width: 768px) {
+    .user {
+        width: 70%;
+    }
+
+    .back {
+        padding-left: 2vw;
+        font-size: 8.3vw;
+    }
 }
 </style>
